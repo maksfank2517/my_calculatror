@@ -14,8 +14,6 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
-    /* justify-content: center; */
-    /* flex-direction: column; */
 }
 
 .result {
@@ -59,4 +57,18 @@ p {
 
 .about p {
     max-width: 300px;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+    
+    .flex {
+        flex-direction: column;
+    }
+
+    img {
+        width: 300px;
+    }
 }
