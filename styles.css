@@ -48,12 +48,14 @@ body {
 
 .calculator-buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 30px;
 }
 
 .mode-btn {
-    flex: 1;
+    flex: 1 1 calc(50% - 5px);
+    min-width: 120px;
     padding: 15px 25px;
     border: 2px solid #e0e0e0;
     background: white;

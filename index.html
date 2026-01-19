@@ -15,8 +15,10 @@
             <div class="right">
 
                 <div class="calculator-buttons">
-                    <button class="mode-btn active" data-mode="markup">Наценка</button>
+                    <button class="mode-btn active" data-mode="markup">Наценка %</button>
                     <button class="mode-btn" data-mode="discount">Скидка</button>
+                    <button class="mode-btn" data-mode="price-markup">Наценка на цену</button>
+                    <button class="mode-btn" data-mode="percent-of">Процент от числа</button>
                 </div>
 
                 <div class="calc-fields markup-fields">
@@ -34,6 +36,22 @@
                     <p>Размер скидки</p>
                     <input class="discount-percent" type="number" value="20" min="0" max="100">
                     <h5>Цена со скидкой</h5>
+                </div>
+
+                <div class="calc-fields price-markup-fields" style="display: none;">
+                    <p>Базовая цена</p>
+                    <input class="base-price" type="number" value="100" min="0">
+                    <p>Наценка %</p>
+                    <input class="markup-percent" type="number" value="15" min="0">
+                    <h5>Цена с наценкой</h5>
+                </div>
+
+                <div class="calc-fields percent-of-fields" style="display: none;">
+                    <p>Целое число</p>
+                    <input class="total-value" type="number" value="1800" min="0">
+                    <p>Часть от числа</p>
+                    <input class="part-value" type="number" value="240" min="0">
+                    <h5>Процент</h5>
                 </div>
 
                 <div class="result">30%</div>
