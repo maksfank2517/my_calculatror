@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,17 +10,33 @@
     <div class="container">
         <div class="flex">
             <div class="left">
-                <img src="./Сat-first.png" 
-                alt="оцените рост ваших инвестиций">
+                <img src="./Сat-first.png" alt="оцените рост ваших инвестиций">
             </div>
             <div class="right">
-                <p>Начальная цена</p>
-                <input class="initial-price" type="number" value="100" min="0">
-                <p>Итоговая цена</p>
-                <input type="number" class="final-price" value="100" min="0">
-                <h5>Процент наценки</h5>
-                <div class="result"></div>
-            </div>
+
+                <div class="calculator-buttons">
+                    <button class="mode-btn active" data-mode="markup">Наценка</button>
+                    <button class="mode-btn" data-mode="discount">Скидка</button>
+                </div>
+
+                <div class="calc-fields markup-fields">
+                    <p>Начальная цена</p>
+                    <input class="initial-price" type="number" value="100" min="0">
+                    <p>Итоговая цена</p>
+                    <input type="number" class="final-price" value="130" min="0">
+                    <h5>Процент наценки</h5>
+                </div>
+
+
+                <div class="calc-fields discount-fields" style="display: none;">
+                    <p>Цена без скидки</p>
+                    <input class="original-price" type="number" value="130" min="0">
+                    <p>Размер скидки</p>
+                    <input class="discount-percent" type="number" value="20" min="0" max="100">
+                    <h5>Цена со скидкой</h5>
+                </div>
+
+                <div class="result">30%</div>
             </div>
         </div>
     </div>

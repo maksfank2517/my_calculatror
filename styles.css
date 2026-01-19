@@ -1,75 +1,202 @@
-body {
+* {
     margin: 0;
-    padding: 50px;
-    font-family: sans-serif;
-    background-color: #6e6e6e;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
 .container {
-    width: 100%; 
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
 }
 
 .flex {
     display: flex;
-    gap: 10px;
+    gap: 40px;
     align-items: center;
-    justify-content: center;
-    background-color: #b4b2b2;
-    border: 5px solid;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.left {
+    flex: 0 0 200px;
+}
+
+.left img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.right {
+    flex: 1;
+    min-width: 300px;
+}
+
+.calculator-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 15px 25px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mode-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.calc-fields {
+    display: block;
+}
+
+.calc-fields p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.calc-fields input {
+    width: 100%;
+    padding: 18px 20px;
+    border: 2px solid #e8f0fe;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: white;
+    margin-bottom: 25px;
+}
+
+.calc-fields input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    transform: scale(1.02);
+}
+
+.calc-fields h5 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .result {
-    font-weight: bold;
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border-radius: 25px;
+    margin-top: 10px;
+    box-shadow: 0 15px 35px rgba(240, 147, 251, 0.4);
+    letter-spacing: 1px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-p {
-    font-size: 15px;
-    font-weight: bold;
-}
-
-input {
-    color: #000000;
-    padding: 10px 20px;
-    width: 200px;
-    border-radius: 5px;
-    outline: 0;
-    border: 0;
-    background-color: #5606e11a;
-}
-
-img {
-    width: 400px;
-    margin-right: 50px;
-    border-radius: 10px;
-}
-
-h5  {
-    color: rgb(25, 25, 211);
-    margin-bottom: 10px;
-}
-p {
-    font-size: 12px;
+.result:empty::before {
+    content: '0%';
+    opacity: 0.5;
 }
 
 
-@media screen and (max-width: 480px) {
-    body {
-        padding: 20px;
-    }
-    
+@media (max-width: 768px) {
     .flex {
         flex-direction: column;
+        gap: 30px;
+        padding: 30px 20px;
     }
-
-    img {
-        width: 300px;
+    
+    .left {
+        flex: none;
+        max-width: 250px;
         margin: 0 auto;
     }
-
-    .result {
-        padding-bottom: 10px;
+    
+    .mode-btn {
+        padding: 12px 20px;
+        font-size: 15px;
     }
+    
+    .result {
+        font-size: 36px;
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-buttons {
+        flex-direction: column;
+    }
+    
+    .result {
+        font-size: 32px;
+    }
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.flex {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.mode-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.mode-btn:hover::before {
+    left: 100%;
 }
