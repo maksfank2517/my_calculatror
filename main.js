@@ -33,7 +33,7 @@ function update() {
         let finalPrice = base * (1 + markupPct / 100);
         resultEl.textContent = finalPrice.toFixed(2) + ' руб.';
         
-    } else if (currentMode === 'percent-of') { // Новая: процент от числа
+    } else if (currentMode === 'percent-of') { 
         let part = +document.querySelector('.part-value').value;
         let total = +document.querySelector('.total-value').value;
         if (total === 0 || isNaN(part) || isNaN(total) || total < 0 || part < 0) {
@@ -41,29 +41,29 @@ function update() {
             return;
         }
         let percent = (part / total) * 100;
-        resultEl.textContent = Math.round(percent) + '%';
+        resultEl.textContent = percent.toFixed(2) + '%';
     }
 }
 
-// Переключение (обновлено для всех кнопок)
+
 document.querySelectorAll('.mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelector('.mode-btn.active').classList.remove('active');
         btn.classList.add('active');
         currentMode = btn.dataset.mode;
         
-        // Скрыть все поля
+        
         document.querySelectorAll('.calc-fields').forEach(field => {
             field.style.display = 'none';
         });
         
-        // Показать нужные
+        
         document.querySelector('.' + currentMode + '-fields').style.display = 'block';
         update();
     });
 });
 
-// Input обработчики для всех полей
+
 document.addEventListener('input', (e) => {
     const fields = ['initial-price', 'final-price', 'original-price', 'discount-percent', 
                    'base-price', 'markup-percent', 'part-value', 'total-value'];
