@@ -42,34 +42,47 @@ function update() {
         }
         let percent = (part / total) * 100;
         resultEl.textContent = percent.toFixed(2) + '%';
+
+    } else if (currentMode === 'sum-percent') {
+        let total = +document.querySelector('.total-sum').value;
+        let percent = +document.querySelector('.sum-percent').value;
+        
+        if (total === 0 || isNaN(total) || isNaN(percent) || total < 0 || percent < 0 || percent > 100) {
+            resultEl.textContent = 'Ошибка';
+            return;
+        }
+        
+        let amount = total * (percent / 100);
+        resultEl.textContent = amount.toFixed(2) + ' руб.';
     }
 }
 
 
-document.querySelectorAll('.mode-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelector('.mode-btn.active').classList.remove('active');
-        btn.classList.add('active');
-        currentMode = btn.dataset.mode;
-        
-        
-        document.querySelectorAll('.calc-fields').forEach(field => {
-            field.style.display = 'none';
-        });
-        
-        
-        document.querySelector('.' + currentMode + '-fields').style.display = 'block';
-        update();
+document.getElementById('modeSelect').addEventListener('change', (e) => {
+    currentMode = e.target.value;
+    
+    
+    document.querySelectorAll('.calc-fields').forEach(field => {
+        field.style.display = 'none';
     });
+    
+    
+    document.querySelector('.' + currentMode + '-fields').style.display = 'block';
+    update();
 });
 
 
+let inputTimeout;
 document.addEventListener('input', (e) => {
     const fields = ['initial-price', 'final-price', 'original-price', 'discount-percent', 
-                   'base-price', 'markup-percent', 'part-value', 'total-value'];
+                   'base-price', 'markup-percent', 'part-value', 'total-value', 'total-sum', 'sum-percent'];
+    
     if (fields.some(cls => e.target.classList.contains(cls))) {
-        update();
+        clearTimeout(inputTimeout);
+        inputTimeout = setTimeout(update, 100); 
     }
 });
 
+currentMode = 'markup';
+document.getElementById('modeSelect').value = 'markup';
 update();
